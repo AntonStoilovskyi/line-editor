@@ -7,7 +7,7 @@ import (
 	"os"
 
 	"github.com/robertkrimen/otto"
-	"line-editor/Cli"
+	"github.com/AntonStolov/line-editor/Cli"
 
 )
 

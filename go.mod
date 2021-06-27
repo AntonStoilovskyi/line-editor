@@ -1,4 +1,4 @@
-module line-editor
+module github.com/AntonStolov/line-editor
 
 go 1.14
 
