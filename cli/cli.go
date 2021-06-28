@@ -1,4 +1,4 @@
-package Cli
+package cli
 
 import (
 	"flag"
@@ -24,7 +24,7 @@ func Cli() Params {
     }
 
     log.Printf("\nfile: %s\nscript: %s\n", *textPtr, *metricPtr)
-	
+
 	paramiters.File = *textPtr
 	paramiters.Script = *metricPtr
 
