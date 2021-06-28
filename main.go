@@ -13,7 +13,7 @@ import (
 
 func main() {
 
-	paramiters := Cli.Cli()
+	paramiters := cli.Cli()
 	
 	file, err := os.Open(paramiters.File)
     if err != nil {
