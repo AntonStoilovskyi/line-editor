@@ -15,7 +15,7 @@ type Params struct {
 func Cli() Params {
 	var paramiters Params
     textPtr := flag.String("file", "", "File to parse. (Required)")
-    metricPtr := flag.String("script", "input", "JavaScript snippet. {input} is always processing line. Example: \"String(input).split(\"t\")[0];\"")
+    metricPtr := flag.String("script", "input", "JavaScript snippet. {input} is always processing line. Example: \"String(input).split('t')[0];\"")
     flag.Parse()
 
     if *textPtr == "" {
