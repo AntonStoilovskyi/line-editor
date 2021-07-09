@@ -1,8 +1,8 @@
 # line-editor
 
-This is a simple edit tool for a text file. Change each line in the stream, using javaScript snippet for rebuild these lines.
+This is a simple edit tool for a text file. Change each line in the stream, using a javaScript snippet to rebuild these lines.
 
-Please install Golang if you do not have Golang alredy installed.
+Please install Golang if you do not have Golang already installed.
 
 * Add GOPATH/bin to your PATH:
     * for bash:
@@ -18,6 +18,6 @@ Please install Golang if you do not have Golang alredy installed.
 * Write javascript code to change each line from the file using '--script' flag
 
 ## Example:
-Change commas in the CSV file to the pipe lines '|' if number of rows equels 4
+Replace commas in the CSV file to the pipelines '|' if the number of rows equals 4
 
 `line-editor --file test.csv --script "String(input).split(',').length == 4 ? String(input).split(',').join('|') : ',,,'"`
