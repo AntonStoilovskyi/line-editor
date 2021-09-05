@@ -14,6 +14,7 @@ import (
 func main() {
 
 	paramiters := cli.Cli()
+	counter := 0;
 	
 	file, err := os.Open(paramiters.File)
     if err != nil {
@@ -23,7 +24,8 @@ func main() {
 
     scanner := bufio.NewScanner(file)
     for scanner.Scan() {
-		manipulator(paramiters.Script, scanner.Text())
+		counter++;
+		manipulator(paramiters.Script, scanner.Text(), fmt.Sprintf("%d", counter))
     }
 
     if err := scanner.Err(); err != nil {
@@ -32,8 +34,9 @@ func main() {
 	
 }
 
-func manipulator(jsCommand string, input string) {
+func manipulator(jsCommand string, input string, lineCounter string) {
 	script := `
+		var line =` + lineCounter + `;
 		var value = (function() {
 			var input = "` + input + `";
 			` +
