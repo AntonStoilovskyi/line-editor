@@ -10,8 +10,8 @@ Please install Golang if you do not have Golang already installed.
     * for zsh:
     `echo 'export PATH=$PATH:$(go env GOPATH)/bin' >> ~/.zshrc && source ~/.zshrc`
 * Install line-editor:
-    Golang 1.16<=: `go get github.com/AntonStolov/line-editor`
-    Golang >=1.17: `go install github.com/AntonStolov/line-editor@latest`
+    * Golang 1.16<=: `go get github.com/AntonStolov/line-editor`
+    * Golang >=1.17: `go install github.com/AntonStolov/line-editor@latest`
 ## How to use:
 
 * Select file using '--file' flag
