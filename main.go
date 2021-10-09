@@ -6,41 +6,43 @@ import (
 	"log"
 	"os"
 
-	"github.com/robertkrimen/otto"
 	"github.com/AntonStolov/line-editor/cli"
-
+	"github.com/robertkrimen/otto"
 )
 
 func main() {
 
 	paramiters := cli.Cli()
-	counter := 0;
-	
+	counter := 0
+	lineBefore := ""
+
 	file, err := os.Open(paramiters.File)
-    if err != nil {
-        log.Fatal(err)
-    }
-    defer file.Close()
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
 
-    scanner := bufio.NewScanner(file)
-    for scanner.Scan() {
-		counter++;
-		manipulator(paramiters.Script, scanner.Text(), fmt.Sprintf("%d", counter))
-    }
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		counter++
+		manipulator(paramiters.Script, scanner.Text(), fmt.Sprintf("%d", counter), lineBefore)
+		lineBefore = scanner.Text()
+	}
 
-    if err := scanner.Err(); err != nil {
-        log.Fatal(err)
-    }
-	
+	if err := scanner.Err(); err != nil {
+		log.Fatal(err)
+	}
+
 }
 
-func manipulator(jsCommand string, input string, lineCounter string) {
+func manipulator(jsCommand string, input string, lineCounter string, lineBefore string) {
 	script := `
+		var lineBefore = "` + lineBefore + `";
 		var line =` + lineCounter + `;
 		var value = (function() {
 			var input = "` + input + `";
 			` +
-			`return ` + jsCommand +
+		`return ` + jsCommand +
 		`
 		})();
 	`
