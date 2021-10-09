@@ -17,6 +17,11 @@ Please install Golang if you do not have Golang already installed.
 * Select file using '--file' flag
 * Write javascript code to change each line from the file using '--script' flag
 
+## Code variables
+
+* `input` - current line
+* `LineBefore` - line before current
+
 ## Example:
 Replace commas in the CSV file to the pipelines '|' if the number of rows equals 4
 
