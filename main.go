@@ -46,14 +46,13 @@ func manipulator(jsCommand string, input string, lineCounter string, lineBefore 
 		`
 		})();
 	`
-	// fmt.Printf("full processing script: %s\n", script)
-	// fmt.Println(script)
+
 	vm := otto.New()
 	vm.Run(script)
 
 	if value, err := vm.Get("value"); err == nil {
-		if value_int, err := value.ToString(); err == nil {
-			fmt.Println(value_int)
+		if valueInt, err := value.ToString(); err == nil {
+			fmt.Println(valueInt)
 		}
 	}
 }

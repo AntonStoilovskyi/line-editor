@@ -2,6 +2,8 @@ package cli
 
 import (
 	"flag"
+	"io/ioutil"
+
 	// "fmt"
 	"log"
 	"os"
@@ -13,20 +15,36 @@ type Params struct {
 }
 
 func Cli() Params {
-	var paramiters Params
-	textPtr := flag.String("file", "", "File to parse. (Required)")
-	metricPtr := flag.String("script", "input", "JavaScript snippet. {input} is always processing line. Example: \"String(input).split('t')[0];\"")
+	var parameters Params
+	filePtr := flag.String("file", "", "File to parse. (Required)")
+	scriptSnippetPtr := flag.String("script", "input", "JavaScript snippet. {input} is always processing line. Example: \"String(input).split('t')[0];\"")
+	scriptSnippetFilePtr := flag.String("script-file", "", "Path to JavaScript file")
 	flag.Parse()
 
-	if *textPtr == "" {
+	if *filePtr == "" {
 		flag.PrintDefaults()
 		os.Exit(1)
 	}
 
-	log.Printf("\nfile: %s\nscript: %s\n", *textPtr, *metricPtr)
+	log.Printf("\nfile: %s\nscript: %s\n", *filePtr, *scriptSnippetPtr)
 
-	paramiters.File = *textPtr
-	paramiters.Script = *metricPtr
+	parameters.File = *filePtr
+	if *scriptSnippetFilePtr != "" {
+		parameters.Script = readScriptFile(*scriptSnippetFilePtr)
+	} else {
+		parameters.Script = *scriptSnippetPtr
+	}
 
-	return paramiters
+	return parameters
+}
+
+func readScriptFile(path string) string {
+
+	content, err := ioutil.ReadFile(path)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return string(content)
 }
