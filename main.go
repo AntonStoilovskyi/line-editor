@@ -12,11 +12,11 @@ import (
 
 func main() {
 
-	paramiters := cli.Cli()
+	parameters := cli.Cli()
 	counter := 0
 	lineBefore := ""
 
-	file, err := os.Open(paramiters.File)
+	file, err := os.Open(parameters.File)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -25,7 +25,7 @@ func main() {
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		counter++
-		manipulator(paramiters.Script, scanner.Text(), fmt.Sprintf("%d", counter), lineBefore)
+		manipulator(parameters.Script, scanner.Text(), fmt.Sprintf("%d", counter), lineBefore)
 		lineBefore = scanner.Text()
 	}
 
